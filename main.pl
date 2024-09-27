@@ -1,10 +1,5 @@
 #!/usr/bin/perl
 
-
-#  1. Provide a variable contains log file
-#  2. The word user want to search   
-#  3. Save an output file
-
 sub Read_log_file {
 
     my $log_file = $_[0]; 
