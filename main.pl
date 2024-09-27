@@ -17,22 +17,24 @@ sub Read_log_file {
 
 
 sub Main {
+
 	
-	my $output_file = "output.txt"; # Change this
-	my @log_array = Read_log_file("test.log"); # Change this
-	
+	my $out_file = $ARGV[1] or die "Usage $1 input_filename output_filename\n";	
+	my $file = $ARGV[0] or die "Usage: $0 input_filename output_filename\n";
+	my @log_array = Read_log_file($file);
+
 	print("Provide a word you want to search => ");
 	
-	my $word = <>;
+	my $word = <STDIN>;
 	chomp($word);
 		
 	my @filtered_array = grep { $_ =~ /\Q$word\E/i } @log_array;
 
 	if (@filtered_array) {
-		open(my $out, '>', $output_file) or die "Could not open file '$output_file' $!";
+		open(my $out, '>', $out_file) or die "Could not open file '$out_file' $!";
            	print $out @filtered_array;
            	close($out);
-            	print "Results written to $output_file\n";
+            	print "Results written to $out_file\n";
     	} else {
         	print "No matching lines found.\n";
     	}
